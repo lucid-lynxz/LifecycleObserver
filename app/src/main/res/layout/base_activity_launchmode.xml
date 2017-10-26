@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_standard"
+        style="@style/common_btn"
+        android:text="start StandardActivity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_single_top"
+        style="@style/common_btn"
+        android:text="start SingleTopActivity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_standard"/>
+
+    <TextView
+        android:id="@+id/tv_single_task"
+        style="@style/common_btn"
+        android:text="start SingleTaskActivity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_top"/>
+
+    <TextView
+        android:id="@+id/tv_singe_instance"
+        style="@style/common_btn"
+        android:text="start SingleInstanceActivity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_task"/>
+
+    <TextView
+        android:id="@+id/tv_show_dialog"
+        style="@style/common_btn"
+        android:text="show alert dialog"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_singe_instance"/>
+
+</android.support.constraint.ConstraintLayout>
