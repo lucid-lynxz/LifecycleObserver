@@ -9,6 +9,7 @@ class LifeApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Logger.init(Logger.debugLevel, "lifeCycleLog")
+        TaskTreeManager.init(this)
         this.registerActivityLifecycleCallbacks(ActivityLifecycleManager)
     }
 }

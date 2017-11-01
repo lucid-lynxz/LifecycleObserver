@@ -3,6 +3,8 @@ package org.lynxz.lifecyclerobserver
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import org.lynxz.lifecyclerobserver.bean.ActivityInfo
+import org.lynxz.lifecyclerobserver.bean.ActivityState
 
 /**
  * Created by lynxz on 25/10/2017.
@@ -18,42 +20,52 @@ object ActivityLifecycleManager : Application.ActivityLifecycleCallbacks {
 //                    .subscribe {
 //                        it.no { activity.showToast("本应用需要绘制悬浮窗权限") }
 //                    }
+            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateCreate))
         }
     }
 
     override fun onActivityStarted(activity: Activity?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onStart ${it.hashCode()}", TAG_ACTIVITY)
+            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateStart))
         }
     }
 
     override fun onActivityResumed(activity: Activity?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onResume ${it.hashCode()}", TAG_ACTIVITY)
+            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateResume))
         }
     }
 
     override fun onActivityPaused(activity: Activity?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onPause ${it.hashCode()}", TAG_ACTIVITY)
+            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StatePause))
         }
     }
 
     override fun onActivityStopped(activity: Activity?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onStop ${it.hashCode()}", TAG_ACTIVITY)
+            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateStop))
         }
     }
 
     override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onSaveInstanceState ${it.hashCode()}", TAG_ACTIVITY)
+            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateSaveInstanceState))
         }
     }
 
     override fun onActivityDestroyed(activity: Activity?) {
         activity?.let {
-            Logger.d("${it::class.java.simpleName} onDestroy ${it.hashCode()}", TAG_ACTIVITY)
+            Logger.d("${it::class.java.simpleName} onDestroy ${it.hashCode()}, taskId = ${it.taskId}", TAG_ACTIVITY)
+            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateDestroy))
         }
     }
+
+    private fun getActivityInfo(act: Activity, state: ActivityState) = ActivityInfo(act, act.taskId, act::class.java.simpleName, act.hashCode(), state)
+
 }

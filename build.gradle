@@ -6,7 +6,7 @@ buildscript {
         constraint_layout_version = '1.0.2'
 
         kotlin_version = '1.1.51'
-        gradle_version = '3.0.0-rc2'
+        gradle_version = '3.0.0'
         rxpermission_version = '0.9.4@aar'
         rxjava_version = '2.1.1'
         rxkotlin_version = '2.1.0'

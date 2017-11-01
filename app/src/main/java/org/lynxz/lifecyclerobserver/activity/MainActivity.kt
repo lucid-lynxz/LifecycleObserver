@@ -1,8 +1,8 @@
-package org.lynxz.lifecyclerobserver
+package org.lynxz.lifecyclerobserver.activity
 
 import android.content.Intent
 import kotlinx.android.synthetic.main.activity_main.*
-import org.lynxz.lifecyclerobserver.activity.StandardActivity
+import org.lynxz.lifecyclerobserver.R
 import org.lynxz.lifecyclerobserver.base.BaseActivity
 
 class MainActivity : BaseActivity() {

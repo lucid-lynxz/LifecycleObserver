@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -34,6 +34,7 @@
         <activity
             android:name=".activity.SingleInstanceActivity"
             android:launchMode="singleInstance"/>
+        <activity android:name=".activity.ShadowActivity"/>
     </application>
 
 </manifest>
