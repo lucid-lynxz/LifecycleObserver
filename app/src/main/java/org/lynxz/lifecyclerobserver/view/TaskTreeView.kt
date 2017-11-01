@@ -39,6 +39,8 @@ class TaskTreeView(cxt: Context) : FrameLayout(cxt) {
         }
     }
 
+    fun isEmpty() = mAdapter.data.size == 0
+
     fun update(act: ActivityInfo) {
         val key = act.hashCode
         activityCodeMap

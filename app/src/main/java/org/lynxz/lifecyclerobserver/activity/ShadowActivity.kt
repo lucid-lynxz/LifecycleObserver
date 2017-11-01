@@ -25,7 +25,7 @@ class ShadowActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 0 && Settings.canDrawOverlays(this)) {
-            TaskTreeManager.init(application)
+            TaskTreeManager.instance.init(application)
         } else {
             showToast("权限被禁,无法绘制悬浮窗")
         }

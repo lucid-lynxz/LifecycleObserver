@@ -20,49 +20,49 @@ object ActivityLifecycleManager : Application.ActivityLifecycleCallbacks {
 //                    .subscribe {
 //                        it.no { activity.showToast("本应用需要绘制悬浮窗权限") }
 //                    }
-            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateCreate))
+            TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StateCreate))
         }
     }
 
     override fun onActivityStarted(activity: Activity?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onStart ${it.hashCode()}", TAG_ACTIVITY)
-            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateStart))
+            TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StateStart))
         }
     }
 
     override fun onActivityResumed(activity: Activity?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onResume ${it.hashCode()}", TAG_ACTIVITY)
-            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateResume))
+            TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StateResume))
         }
     }
 
     override fun onActivityPaused(activity: Activity?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onPause ${it.hashCode()}", TAG_ACTIVITY)
-            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StatePause))
+            TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StatePause))
         }
     }
 
     override fun onActivityStopped(activity: Activity?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onStop ${it.hashCode()}", TAG_ACTIVITY)
-            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateStop))
+            TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StateStop))
         }
     }
 
     override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onSaveInstanceState ${it.hashCode()}", TAG_ACTIVITY)
-            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateSaveInstanceState))
+            TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StateSaveInstanceState))
         }
     }
 
     override fun onActivityDestroyed(activity: Activity?) {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onDestroy ${it.hashCode()}, taskId = ${it.taskId}", TAG_ACTIVITY)
-            TaskTreeManager.updateTask(getActivityInfo(activity, ActivityState.StateDestroy))
+            TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StateDestroy))
         }
     }
 
