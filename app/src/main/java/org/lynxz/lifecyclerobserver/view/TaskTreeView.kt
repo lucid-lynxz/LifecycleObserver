@@ -4,7 +4,6 @@ import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
 import org.lynxz.lifecyclerobserver.R
@@ -59,9 +58,4 @@ class TaskTreeView(cxt: Context) : FrameLayout(cxt) {
                 }
         mAdapter.notifyDataSetChanged()
     }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return super.onTouchEvent(event)
-    }
-
 }
