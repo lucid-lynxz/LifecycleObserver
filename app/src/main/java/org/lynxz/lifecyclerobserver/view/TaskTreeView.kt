@@ -1,10 +1,10 @@
 package org.lynxz.lifecyclerobserver.view
 
 import android.content.Context
-import android.graphics.Color
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
 import org.lynxz.lifecyclerobserver.R
@@ -28,7 +28,6 @@ class TaskTreeView(cxt: Context) : FrameLayout(cxt) {
     }
 
     init {
-        setBackgroundColor(Color.parseColor("#5500ff00"))
         val taskTreeView = LayoutInflater.from(cxt.applicationContext).inflate(R.layout.view_task_tree, this)
         rvTask = taskTreeView.findViewById<View>(R.id.rv_task) as RecyclerView
         rvTask.apply {
@@ -56,10 +55,13 @@ class TaskTreeView(cxt: Context) : FrameLayout(cxt) {
                 }
                 .otherwise {
                     activityCodeMap.put(key, act)
-                    mAdapter.data.add(act)
+                    mAdapter.data.add(0, act)
                 }
         mAdapter.notifyDataSetChanged()
     }
 
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return super.onTouchEvent(event)
+    }
 
 }

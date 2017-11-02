@@ -3,6 +3,7 @@ package org.lynxz.lifecyclerobserver
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.PixelFormat
 import android.os.Build
 import android.provider.Settings
@@ -38,12 +39,14 @@ class TaskTreeManager private constructor() {
             mWindowManager = mWindowManager ?: app.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
             containerView = LinearLayout(app).apply {
                 orientation = LinearLayout.HORIZONTAL
+                setBackgroundColor(Color.LTGRAY)
             }
 
             mWindowManager?.addView(containerView, WindowManager.LayoutParams().apply {
                 gravity = Gravity.TOP or Gravity.START
                 x = 0
-                y = 200
+                y = app.resources.displayMetrics.heightPixels
+
                 type = WindowManager.LayoutParams.TYPE_PHONE
                 format = PixelFormat.RGBA_8888
                 flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
@@ -81,7 +84,11 @@ class TaskTreeManager private constructor() {
      * 添加新task到悬浮窗中
      * */
     private fun addView(view: View) {
-        containerView?.addView(view, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        containerView?.addView(view,
+                LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                    setMargins(10, 2, 10, 2)
+                })
     }
 
     private fun removeView(view: View?) {
