@@ -10,9 +10,6 @@ import android.support.v7.app.AppCompatActivity
 import org.lynxz.lifecyclerobserver.TaskTreeManager
 import org.lynxz.lifecyclerobserver.showToast
 
-/**
- * Created by lynxz on 01/11/2017.
- */
 class ShadowActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {

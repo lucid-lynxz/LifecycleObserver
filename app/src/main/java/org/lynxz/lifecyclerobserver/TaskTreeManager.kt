@@ -47,7 +47,12 @@ class TaskTreeManager private constructor() {
                 x = 0
                 y = app.resources.displayMetrics.heightPixels
 
-                type = WindowManager.LayoutParams.TYPE_PHONE
+                type = if (Build.VERSION.SDK_INT >= 26) {
+                    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+                } else {
+                    // 26以上会崩溃, 提示: permission denied for window type 2002
+                    WindowManager.LayoutParams.TYPE_PHONE
+                }
                 format = PixelFormat.RGBA_8888
                 flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 width = WindowManager.LayoutParams.WRAP_CONTENT
