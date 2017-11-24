@@ -16,23 +16,41 @@ import org.lynxz.lifecyclerobserver.activity.StandardActivity
  * 用于测试不同launchMode
  */
 abstract class BaseLaunchModeActivity : BaseActivity() {
+    private var startFromApplication = false
+
     override fun getLayoutRes() = R.layout.base_activity_launchmode
 
     override fun afterCreate() {
+
+        cb_from_app.setOnClickListener {
+            startFromApplication = true
+        }
+
         tv_standard.setOnClickListener {
-            startActivity(Intent(this@BaseLaunchModeActivity, StandardActivity::class.java))
+            startActivityCustomer(StandardActivity::class.java)
         }
         tv_single_top.setOnClickListener {
-            startActivity(Intent(this@BaseLaunchModeActivity, SingleTopActivity::class.java))
+            startActivityCustomer(SingleTopActivity::class.java)
         }
         tv_single_task.setOnClickListener {
-            startActivity(Intent(this@BaseLaunchModeActivity, SingleTaskActivity::class.java))
+            startActivityCustomer(SingleTaskActivity::class.java)
         }
         tv_singe_instance.setOnClickListener {
-            startActivity(Intent(this@BaseLaunchModeActivity, SingleInstanceActivity::class.java))
+            startActivityCustomer(SingleInstanceActivity::class.java)
         }
         tv_show_dialog.setOnClickListener {
             showDialog()
+        }
+    }
+
+    private fun startActivityCustomer(targetAct: Class<out BaseActivity>) {
+        if (startFromApplication) {
+            applicationContext.startActivity(Intent(applicationContext, targetAct).apply {
+                // 由于非 Activity 的 Context 没有所谓的任务栈,因此需要创建一个新的
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            })
+        } else {
+            startActivity(Intent(this@BaseLaunchModeActivity, targetAct))
         }
     }
 

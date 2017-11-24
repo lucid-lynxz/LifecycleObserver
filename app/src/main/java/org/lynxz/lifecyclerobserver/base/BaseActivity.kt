@@ -6,10 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 
-/**
- * Created by xqc on 2017/3/13.
- * Developer App
- */
 abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {

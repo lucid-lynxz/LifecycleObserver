@@ -28,7 +28,6 @@ class TaskTreeManager private constructor() {
         val instance by lazy { TaskTreeManager() }
     }
 
-
     fun init(app: Application) {
         if (Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(app)) {
             val intent = Intent(app, ShadowActivity::class.java).apply {
@@ -40,6 +39,7 @@ class TaskTreeManager private constructor() {
             containerView = LinearLayout(app).apply {
                 orientation = LinearLayout.HORIZONTAL
                 setBackgroundColor(Color.LTGRAY)
+//                Logger.d("containerViewToken =  $windowToken")
             }
 
             mWindowManager?.addView(containerView, WindowManager.LayoutParams().apply {
@@ -49,6 +49,7 @@ class TaskTreeManager private constructor() {
 
                 type = if (Build.VERSION.SDK_INT >= 26) {
                     WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+//                    WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL
                 } else {
                     // 26以上会崩溃, 提示: permission denied for window type 2002
                     WindowManager.LayoutParams.TYPE_PHONE
@@ -61,13 +62,20 @@ class TaskTreeManager private constructor() {
         }
     }
 
+    fun show() {
+        containerView?.visibility = View.VISIBLE
+    }
+
+    fun hide() {
+        containerView?.visibility = View.GONE
+    }
+
     @Synchronized
     fun updateTask(actInfo: ActivityInfo) {
-
         if (mWindowManager == null) {
             return
         }
-
+        show()
         val key = actInfo.taskId
         taskMap.containsKey(key)
                 .yes {

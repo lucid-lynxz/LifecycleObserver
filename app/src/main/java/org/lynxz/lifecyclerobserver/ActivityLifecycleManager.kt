@@ -12,6 +12,7 @@ import org.lynxz.lifecyclerobserver.bean.ActivityState
  */
 object ActivityLifecycleManager : Application.ActivityLifecycleCallbacks {
     private val TAG_ACTIVITY = "activity_life_cycle"
+    private var frontCount = 0
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
         activity?.let {
@@ -33,6 +34,7 @@ object ActivityLifecycleManager : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityResumed(activity: Activity?) {
         activity?.let {
+            frontCount += 1
             Logger.d("${it::class.java.simpleName} onResume ${it.hashCode()}", TAG_ACTIVITY)
             TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StateResume))
         }
@@ -47,8 +49,12 @@ object ActivityLifecycleManager : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityStopped(activity: Activity?) {
         activity?.let {
-            Logger.d("${it::class.java.simpleName} onStop ${it.hashCode()}", TAG_ACTIVITY)
+            frontCount -= 1
+            Logger.d("${it::class.java.simpleName} onStop ${it.hashCode()} $frontCount", TAG_ACTIVITY)
             TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StateStop))
+            if (frontCount <= 0) {
+                TaskTreeManager.instance.hide()
+            }
         }
     }
 
@@ -63,6 +69,9 @@ object ActivityLifecycleManager : Application.ActivityLifecycleCallbacks {
         activity?.let {
             Logger.d("${it::class.java.simpleName} onDestroy ${it.hashCode()}, taskId = ${it.taskId}", TAG_ACTIVITY)
             TaskTreeManager.instance.updateTask(getActivityInfo(activity, ActivityState.StateDestroy))
+            if (frontCount <= 0) {
+                TaskTreeManager.instance.hide()
+            }
         }
     }
 
