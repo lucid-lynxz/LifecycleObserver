@@ -11,7 +11,7 @@ import org.lynxz.lifecyclerobserver.bean.ActivityState
  * 管理所有的activity生命周期,打印日志信息,绘制task堆栈树
  */
 object ActivityLifecycleManager : Application.ActivityLifecycleCallbacks {
-    private val TAG_ACTIVITY = "activity_life_cycle"
+    val TAG_ACTIVITY = "activity_life_cycle"
     private var frontCount = 0
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {

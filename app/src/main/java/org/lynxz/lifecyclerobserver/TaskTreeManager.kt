@@ -75,6 +75,7 @@ class TaskTreeManager private constructor() {
         if (mWindowManager == null) {
             return
         }
+
         show()
         val key = actInfo.taskId
         taskMap.containsKey(key)
