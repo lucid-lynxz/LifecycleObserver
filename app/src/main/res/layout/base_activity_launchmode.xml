@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="72dp"/>
+        app:layout_constraintGuide_begin="20dp"/>
+
 
     <CheckBox
         android:id="@+id/cb_from_app"
@@ -20,12 +21,21 @@
         android:text="start by app"
         app:layout_constraintStart_toStartOf="@+id/gl_guide"/>
 
+    <Spinner
+        android:id="@+id/sr_flag"
+        style="@style/slp_spinner_dropdown_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="@+id/gl_guide"
+        app:layout_constraintTop_toBottomOf="@+id/cb_from_app"/>
+
     <TextView
         android:id="@+id/tv_standard"
         style="@style/common_btn"
         android:text="start StandardActivity"
         app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/cb_from_app"/>
+        app:layout_constraintTop_toBottomOf="@+id/sr_flag"/>
 
     <TextView
         android:id="@+id/tv_single_top"

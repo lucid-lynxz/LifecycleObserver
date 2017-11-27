@@ -9,6 +9,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="slp_spinner_dropdown_mode">
+        <item name="android:drawSelectorOnTop">false</item>
+        <item name="android:spinnerMode">dropdown</item>
+        <item name="android:background">@null</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:dropDownVerticalOffset">10dp</item>
+    </style>
 
     <style name="common_btn">
         <item name="android:layout_width">wrap_content</item>
