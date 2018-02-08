@@ -18,6 +18,8 @@ import org.lynxz.lifecyclerobserver.showToast
  * 用于测试不同launchMode
  *
  * [flag介绍](http://www.jianshu.com/p/7f1c9fac2af2)
+ *
+ * 注意 Intent.FLAG_ACTIVITY_NEW_TASK 与 android:taskAffinity 的结合使用
  */
 abstract class BaseLaunchModeActivity : BaseActivity() {
     private var startFromApplication = false
@@ -82,24 +84,37 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
             startForResult = isChecked
         }
 
+        // standard
         tv_standard.setOnClickListener {
             startActivityCustomer(StandardActivity::class.java)
         }
+
+        // single top
         tv_single_top.setOnClickListener {
             startActivityCustomer(SingleTopActivity::class.java)
         }
+
+        // single task
         tv_single_task.setOnClickListener {
             startActivityCustomer(SingleTaskAActivity::class.java)
         }
         tv_single_task_b.setOnClickListener {
             startActivityCustomer(SingleTaskBActivity::class.java)
         }
+
+        // 带指定 taskAffinity 的 single task 页面
+        tv_single_task_c.setOnClickListener {
+            startActivityCustomer(SingleTaskCActivity::class.java)
+        }
+
+        // single instance
         tv_singe_instance.setOnClickListener {
             startActivityCustomer(SingleInstanceAActivity::class.java)
         }
         tv_singe_instance_b.setOnClickListener {
             startActivityCustomer(SingleInstanceBActivity::class.java)
         }
+
         tv_show_dialog.setOnClickListener {
             showDialog()
         }
@@ -124,6 +139,9 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
             startActivityForResult(Intent(this@BaseLaunchModeActivity, targetAct).apply {
                 if (mFlagSelected >= 0) {
                     addFlags(mFlagSelected)
+                    if (mFlagSelected == Intent.FLAG_ACTIVITY_NEW_TASK) {
+
+                    }
                 }
             }, requestCode)
         }

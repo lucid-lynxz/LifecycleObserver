@@ -68,13 +68,20 @@
         app:layout_constraintStart_toStartOf="@+id/gl_guide"
         app:layout_constraintTop_toBottomOf="@+id/tv_single_task"/>
 
+    <TextView
+        android:id="@+id/tv_single_task_c"
+        style="@style/common_btn"
+        android:text="start SingleTask_C with taskAffinity"
+        app:layout_constraintStart_toStartOf="@+id/gl_guide"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_task_b"/>
+
 
     <TextView
         android:id="@+id/tv_singe_instance"
         style="@style/common_btn"
         android:text="start SingleInstance_A"
         app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/tv_single_task_b"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_task_c"/>
 
     <TextView
         android:id="@+id/tv_singe_instance_b"
