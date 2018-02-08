@@ -21,6 +21,16 @@
         android:text="start by app"
         app:layout_constraintStart_toStartOf="@+id/gl_guide"/>
 
+
+    <CheckBox
+        android:id="@+id/cb_start_for_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start for result"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/cb_from_app"
+        app:layout_constraintLeft_toRightOf="@+id/cb_from_app"/>
+
     <Spinner
         android:id="@+id/sr_flag"
         style="@style/slp_spinner_dropdown_mode"

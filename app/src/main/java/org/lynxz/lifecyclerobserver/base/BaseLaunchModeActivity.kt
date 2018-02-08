@@ -1,14 +1,16 @@
 package org.lynxz.lifecyclerobserver.base
 
-import android.content.DialogInterface
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.base_activity_launchmode.*
+import org.lynxz.lifecyclerobserver.Logger
 import org.lynxz.lifecyclerobserver.R
 import org.lynxz.lifecyclerobserver.activity.*
+import org.lynxz.lifecyclerobserver.showToast
 
 
 /**
@@ -19,6 +21,8 @@ import org.lynxz.lifecyclerobserver.activity.*
  */
 abstract class BaseLaunchModeActivity : BaseActivity() {
     private var startFromApplication = false
+    private var startForResult = false
+
     private var mFlagSelected = -1
     private val mItems = listOf("none flag",
             "FLAG_ACTIVITY_BROUGHT_TO_FRONT",
@@ -50,6 +54,8 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
 
     override fun afterCreate() {
 
+        title = this::class.java.simpleName
+
         sr_flag.let {
             it.adapter = mAdapter
             it.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -62,8 +68,18 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
             }
         }
 
-        cb_from_app.setOnClickListener {
-            startFromApplication = true
+        cb_from_app.setOnCheckedChangeListener { _, isChecked ->
+            startFromApplication = isChecked
+            if (isChecked) {
+                cb_start_for_result.isChecked = false
+                cb_start_for_result.isEnabled = false
+            } else {
+                cb_start_for_result.isEnabled = true
+            }
+        }
+
+        cb_start_for_result.setOnCheckedChangeListener { _, isChecked ->
+            startForResult = isChecked
         }
 
         tv_standard.setOnClickListener {
@@ -87,9 +103,15 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
         tv_show_dialog.setOnClickListener {
             showDialog()
         }
+
+        // 在页面finish的时候才有效, 返回给前一个页面
+        setResult(Activity.RESULT_OK, Intent().apply {
+            putExtra("activity", this@BaseLaunchModeActivity::class.java.simpleName)
+        })
     }
 
     private fun startActivityCustomer(targetAct: Class<out BaseActivity>) {
+        val requestCode = if (startForResult) 100 else -1
         if (startFromApplication) {
             applicationContext.startActivity(Intent(applicationContext, targetAct).apply {
                 // 由于非 Activity 的 Context 没有所谓的任务栈,因此需要创建一个新的
@@ -99,11 +121,11 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
                 }
             })
         } else {
-            startActivity(Intent(this@BaseLaunchModeActivity, targetAct).apply {
+            startActivityForResult(Intent(this@BaseLaunchModeActivity, targetAct).apply {
                 if (mFlagSelected >= 0) {
                     addFlags(mFlagSelected)
                 }
-            })
+            }, requestCode)
         }
     }
 
@@ -112,13 +134,14 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
                 .setTitle("测试")
                 .setMessage("这是个dialog")
                 .setCancelable(true)
-                .setPositiveButton("确定", object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                        dialog?.dismiss()
-                    }
-                })
+                .setPositiveButton("确定") { dialog, _ -> dialog?.dismiss() }
                 .create()
                 .show()
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Logger.d("$requestCode $resultCode $data")
+        showToast("onActivityResult $resultCode")
     }
 }
