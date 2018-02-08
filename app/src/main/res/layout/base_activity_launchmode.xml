@@ -47,22 +47,37 @@
     <TextView
         android:id="@+id/tv_single_task"
         style="@style/common_btn"
-        android:text="start SingleTaskActivity"
+        android:text="start SingleTask_A"
         app:layout_constraintStart_toStartOf="@+id/gl_guide"
         app:layout_constraintTop_toBottomOf="@+id/tv_single_top"/>
 
     <TextView
-        android:id="@+id/tv_singe_instance"
+        android:id="@+id/tv_single_task_b"
         style="@style/common_btn"
-        android:text="start SingleInstanceActivity"
+        android:text="start SingleTask_B"
         app:layout_constraintStart_toStartOf="@+id/gl_guide"
         app:layout_constraintTop_toBottomOf="@+id/tv_single_task"/>
+
+
+    <TextView
+        android:id="@+id/tv_singe_instance"
+        style="@style/common_btn"
+        android:text="start SingleInstance_A"
+        app:layout_constraintStart_toStartOf="@+id/gl_guide"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_task_b"/>
+
+    <TextView
+        android:id="@+id/tv_singe_instance_b"
+        style="@style/common_btn"
+        android:text="start SingleInstance_B"
+        app:layout_constraintStart_toStartOf="@+id/gl_guide"
+        app:layout_constraintTop_toBottomOf="@+id/tv_singe_instance"/>
 
     <TextView
         android:id="@+id/tv_show_dialog"
         style="@style/common_btn"
         android:text="show alert dialog"
         app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/tv_singe_instance"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_singe_instance_b"/>
 
 </android.support.constraint.ConstraintLayout>

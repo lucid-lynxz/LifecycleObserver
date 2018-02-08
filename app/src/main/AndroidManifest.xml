@@ -28,12 +28,21 @@
         <activity
             android:name=".activity.SingleTopActivity"
             android:launchMode="singleTop"/>
+
         <activity
-            android:name=".activity.SingleTaskActivity"
+            android:name=".activity.SingleTaskAActivity"
+            android:launchMode="singleTask"/>
+
+        <activity
+            android:name=".activity.SingleTaskBActivity"
             android:launchMode="singleTask"/>
         <activity
-            android:name=".activity.SingleInstanceActivity"
+            android:name=".activity.SingleInstanceAActivity"
             android:launchMode="singleInstance"/>
+        <activity
+            android:name=".activity.SingleInstanceBActivity"
+            android:launchMode="singleInstance"/>
+
         <activity android:name=".activity.ShadowActivity"/>
     </application>
 

@@ -5,7 +5,7 @@ import org.lynxz.lifecyclerobserver.ActivityLifecycleManager
 import org.lynxz.lifecyclerobserver.Logger
 import org.lynxz.lifecyclerobserver.base.BaseLaunchModeActivity
 
-class SingleTaskActivity : BaseLaunchModeActivity() {
+class SingleTaskBActivity : BaseLaunchModeActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)

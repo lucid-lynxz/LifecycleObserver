@@ -8,10 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.base_activity_launchmode.*
 import org.lynxz.lifecyclerobserver.R
-import org.lynxz.lifecyclerobserver.activity.SingleInstanceActivity
-import org.lynxz.lifecyclerobserver.activity.SingleTaskActivity
-import org.lynxz.lifecyclerobserver.activity.SingleTopActivity
-import org.lynxz.lifecyclerobserver.activity.StandardActivity
+import org.lynxz.lifecyclerobserver.activity.*
 
 
 /**
@@ -76,10 +73,16 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
             startActivityCustomer(SingleTopActivity::class.java)
         }
         tv_single_task.setOnClickListener {
-            startActivityCustomer(SingleTaskActivity::class.java)
+            startActivityCustomer(SingleTaskAActivity::class.java)
+        }
+        tv_single_task_b.setOnClickListener {
+            startActivityCustomer(SingleTaskBActivity::class.java)
         }
         tv_singe_instance.setOnClickListener {
-            startActivityCustomer(SingleInstanceActivity::class.java)
+            startActivityCustomer(SingleInstanceAActivity::class.java)
+        }
+        tv_singe_instance_b.setOnClickListener {
+            startActivityCustomer(SingleInstanceBActivity::class.java)
         }
         tv_show_dialog.setOnClickListener {
             showDialog()
