@@ -45,6 +45,10 @@
             android:launchMode="singleTask"
             android:taskAffinity="org.lynxz.test"/>
         <activity
+            android:name=".activity.SingleTaskDActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="org.lynxz.test"/>
+        <activity
             android:name=".activity.SingleInstanceAActivity"
             android:launchMode="singleInstance"/>
         <activity

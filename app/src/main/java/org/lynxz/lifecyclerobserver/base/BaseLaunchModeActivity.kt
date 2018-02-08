@@ -110,6 +110,9 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
         tv_single_task_c.setOnClickListener {
             startActivityCustomer(SingleTaskCActivity::class.java)
         }
+        tv_single_task_d.setOnClickListener {
+            startActivityCustomer(SingleTaskDActivity::class.java)
+        }
 
         // single instance
         tv_singe_instance.setOnClickListener {
@@ -148,7 +151,19 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
                     }
                 }
             }, requestCode)
+
         }
+        resetStatus()
+    }
+
+    /**
+     * 恢复各可选项为初始状态
+     * */
+    private fun resetStatus() {
+        cb_start_for_result.isChecked = false
+        cb_from_app.isChecked = false
+        sr_flag.setSelection(0)
+
     }
 
     private fun showDialog() {
