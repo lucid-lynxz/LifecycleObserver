@@ -10,6 +10,8 @@ import android.provider.Settings
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
+import android.widget.FrameLayout
+import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import org.lynxz.lifecyclerobserver.activity.ShadowActivity
 import org.lynxz.lifecyclerobserver.bean.ActivityInfo
@@ -22,7 +24,8 @@ import org.lynxz.lifecyclerobserver.view.TaskTreeView
 class TaskTreeManager private constructor() {
     private var mWindowManager: WindowManager? = null
     private val taskMap = mutableMapOf<Int, TaskTreeView>()
-    private var containerView: LinearLayout? = null
+    private var containerView: FrameLayout? = null
+    private var lineLayoutContainer: LinearLayout? = null
 
     companion object {
         val instance by lazy { TaskTreeManager() }
@@ -36,11 +39,13 @@ class TaskTreeManager private constructor() {
             app.startActivity(intent)
         } else {
             mWindowManager = mWindowManager ?: app.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
-            containerView = LinearLayout(app).apply {
+
+            lineLayoutContainer = LinearLayout(app).apply {
                 orientation = LinearLayout.HORIZONTAL
                 setBackgroundColor(Color.LTGRAY)
 //                Logger.d("containerViewToken =  $windowToken")
             }
+            containerView = HorizontalScrollView(app).apply { addView(lineLayoutContainer) }
 
             mWindowManager?.addView(containerView, WindowManager.LayoutParams().apply {
                 gravity = Gravity.TOP or Gravity.START
@@ -98,7 +103,7 @@ class TaskTreeManager private constructor() {
      * 添加新task到悬浮窗中
      * */
     private fun addView(view: View) {
-        containerView?.addView(view,
+        lineLayoutContainer?.addView(view,
                 LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT).apply {
                     setMargins(10, 2, 10, 2)
@@ -106,7 +111,7 @@ class TaskTreeManager private constructor() {
     }
 
     private fun removeView(view: View?) {
-        containerView?.removeView(view)
+        lineLayoutContainer?.removeView(view)
     }
 
 }

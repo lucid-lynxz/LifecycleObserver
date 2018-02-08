@@ -15,7 +15,7 @@ class MainActivity : BaseActivity() {
     override fun afterCreate() {
         tv_launch_mode.setOnClickListener {
             startActivity(Intent(this@MainActivity, StandardActivity::class.java))
-            finish()
+//            finish()
         }
 
         val am = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
