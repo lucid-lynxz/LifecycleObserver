@@ -75,6 +75,6 @@ object ActivityLifecycleManager : Application.ActivityLifecycleCallbacks {
         }
     }
 
-    private fun getActivityInfo(act: Activity, state: ActivityState) = ActivityInfo(act, act.taskId, act::class.java.simpleName, act.hashCode(), state)
+    private fun getActivityInfo(act: Activity, state: ActivityState) = ActivityInfo(act, act.taskId, act::class.java.simpleName.replace(Regex("Activity\$"),""), act.hashCode(), state)
 
 }

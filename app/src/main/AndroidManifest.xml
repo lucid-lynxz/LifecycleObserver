@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name=".activity.StandardActivity"
+            android:name=".activity.StandardAActivity"
             android:launchMode="standard"/>
         <activity
             android:name=".activity.StandardBActivity"

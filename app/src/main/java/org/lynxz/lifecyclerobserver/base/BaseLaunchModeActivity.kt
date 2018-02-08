@@ -86,7 +86,7 @@ abstract class BaseLaunchModeActivity : BaseActivity() {
 
         // standard
         tv_standard.setOnClickListener {
-            startActivityCustomer(StandardActivity::class.java)
+            startActivityCustomer(StandardAActivity::class.java)
         }
 
         tv_standard_b.setOnClickListener {

@@ -14,7 +14,7 @@ class MainActivity : BaseActivity() {
 
     override fun afterCreate() {
         tv_launch_mode.setOnClickListener {
-            startActivity(Intent(this@MainActivity, StandardActivity::class.java))
+            startActivity(Intent(this@MainActivity, StandardAActivity::class.java))
 //            finish()
         }
 
