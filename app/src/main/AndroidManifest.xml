@@ -26,6 +26,10 @@
             android:name=".activity.StandardActivity"
             android:launchMode="standard"/>
         <activity
+            android:name=".activity.StandardBActivity"
+            android:launchMode="standard"
+            android:taskAffinity="org.lynxz.test"/>
+        <activity
             android:name=".activity.SingleTopActivity"
             android:launchMode="singleTop"/>
 
@@ -38,8 +42,8 @@
             android:launchMode="singleTask"/>
         <activity
             android:name=".activity.SingleTaskCActivity"
-            android:taskAffinity="org.lynxz.test"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            android:taskAffinity="org.lynxz.test"/>
         <activity
             android:name=".activity.SingleInstanceAActivity"
             android:launchMode="singleInstance"/>

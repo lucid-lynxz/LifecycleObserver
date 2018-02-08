@@ -1,100 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/gl_guide"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp"/>
+        android:paddingBottom="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_from_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="start by app"/>
 
 
-    <CheckBox
-        android:id="@+id/cb_from_app"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="start by app"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"/>
+            <CheckBox
+                android:id="@+id/cb_start_for_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="start for result"/>
+        </LinearLayout>
 
 
-    <CheckBox
-        android:id="@+id/cb_start_for_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="start for result"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/cb_from_app"
-        app:layout_constraintLeft_toRightOf="@+id/cb_from_app"/>
+        <Spinner
+            android:id="@+id/sr_flag"
+            style="@style/slp_spinner_dropdown_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"/>
 
-    <Spinner
-        android:id="@+id/sr_flag"
-        style="@style/slp_spinner_dropdown_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/cb_from_app"/>
+        <TextView
+            android:id="@+id/tv_standard"
+            style="@style/common_btn"
+            android:text="start StandardActivity"/>
 
-    <TextView
-        android:id="@+id/tv_standard"
-        style="@style/common_btn"
-        android:text="start StandardActivity"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/sr_flag"/>
+        <TextView
+            android:id="@+id/tv_standard_b"
+            style="@style/common_btn"
+            android:text="start StandardAct with taskAffinity"/>
 
-    <TextView
-        android:id="@+id/tv_single_top"
-        style="@style/common_btn"
-        android:text="start SingleTopActivity"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/tv_standard"/>
+        <TextView
+            android:id="@+id/tv_single_top"
+            style="@style/common_btn"
+            android:text="start SingleTopActivity"/>
 
-    <TextView
-        android:id="@+id/tv_single_task"
-        style="@style/common_btn"
-        android:text="start SingleTask_A"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/tv_single_top"/>
+        <TextView
+            android:id="@+id/tv_single_task"
+            style="@style/common_btn"
+            android:text="start SingleTask_A"/>
 
-    <TextView
-        android:id="@+id/tv_single_task_b"
-        style="@style/common_btn"
-        android:text="start SingleTask_B"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/tv_single_task"/>
+        <TextView
+            android:id="@+id/tv_single_task_b"
+            style="@style/common_btn"
+            android:text="start SingleTask_B"/>
 
-    <TextView
-        android:id="@+id/tv_single_task_c"
-        style="@style/common_btn"
-        android:text="start SingleTask_C with taskAffinity"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/tv_single_task_b"/>
+        <TextView
+            android:id="@+id/tv_single_task_c"
+            style="@style/common_btn"
+            android:text="start SingleTask_C with taskAffinity"/>
 
 
-    <TextView
-        android:id="@+id/tv_singe_instance"
-        style="@style/common_btn"
-        android:text="start SingleInstance_A"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/tv_single_task_c"/>
+        <TextView
+            android:id="@+id/tv_singe_instance"
+            style="@style/common_btn"
+            android:text="start SingleInstance_A"/>
 
-    <TextView
-        android:id="@+id/tv_singe_instance_b"
-        style="@style/common_btn"
-        android:text="start SingleInstance_B"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/tv_singe_instance"/>
+        <TextView
+            android:id="@+id/tv_singe_instance_b"
+            style="@style/common_btn"
+            android:text="start SingleInstance_B"/>
 
-    <TextView
-        android:id="@+id/tv_show_dialog"
-        style="@style/common_btn"
-        android:text="show alert dialog"
-        app:layout_constraintStart_toStartOf="@+id/gl_guide"
-        app:layout_constraintTop_toBottomOf="@+id/tv_singe_instance_b"/>
-
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_show_dialog"
+            style="@style/common_btn"
+            android:text="show alert dialog"/>
+    </LinearLayout>
+</ScrollView>
