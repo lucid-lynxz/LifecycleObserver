@@ -92,7 +92,6 @@ object Logger {
     @JvmOverloads
     @JvmStatic
     fun json(json: String, tag: String = TAG) {
-        var json = json
 
         if (json.isBlank()) {
             d("Empty/Null json content", tag)
@@ -100,17 +99,17 @@ object Logger {
         }
 
         try {
-            json = json.trim { it <= ' ' }
-            if (json.startsWith("{")) {
-                val jsonObject = JSONObject(json)
+            val tempJson = json.trim { it <= ' ' }
+            if (tempJson.startsWith("{")) {
+                val jsonObject = JSONObject(tempJson)
                 var message = jsonObject.toString(JSON_INDENT)
                 message = message.replace("\n".toRegex(), "\n║ ")
                 val s = getMethodNames()
                 println(String.format(s, message))
                 return
             }
-            if (json.startsWith("[")) {
-                val jsonArray = JSONArray(json)
+            if (tempJson.startsWith("[")) {
+                val jsonArray = JSONArray(tempJson)
                 var message = jsonArray.toString(JSON_INDENT)
                 message = message.replace("\n".toRegex(), "\n║ ")
                 val s = getMethodNames()

@@ -1,21 +1,27 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: "../config/sign.gradle"
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
     defaultConfig {
         applicationId "org.lynxz.lifecyclerobserver"
-        minSdkVersion 18
-        targetSdkVersion 26
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -23,24 +29,18 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+    implementation(libs.appcompat)
+    implementation(libs.constraintLayout)
+    implementation(libs.recyclerView)
+    implementation(libs.kotlinLib)
+    implementation(libs.rxPermission2)
+    implementation(libs.rxJava2)
+    implementation(libs.rxAndroid2)
+    implementation(libs.rxKotlin2)
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+    testImplementation(test.junit)
+    testImplementation(test.junit)
+    androidTestImplementation(test.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-
-    compile "com.android.support:recyclerview-v7:$support_version"
-
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    //权限
-    compile "com.tbruyelle.rxpermissions2:rxpermissions:$rxpermission_version"
-
-    // Rx
-    compile "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
-    compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
-    compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
 }

@@ -1,29 +1,27 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext {
-        support_version = '26.1.0'
-        constraint_layout_version = '1.0.2'
-
-        kotlin_version = '1.1.51'
-        gradle_version = '3.0.0'
-        rxpermission_version = '0.9.4@aar'
-        rxjava_version = '2.1.1'
-        rxkotlin_version = '2.1.0'
-        rxandroid_version = '2.0.1'
-
-    }
+    apply from: "./config/dependencies.gradle"
+//    ext {
+//        support_version = '26.1.0'
+//        constraint_layout_version = '1.0.2'
+//
+//        kotlin_version = '1.2.60'
+//        gradle_version = '3.0.0'
+//        rxpermission_version = '0.9.4@aar'
+//        rxjava_version = '2.1.1'
+//        rxkotlin_version = '2.1.0'
+//        rxandroid_version = '2.0.1'
+//    }
 
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinLibVersion"
     }
 }
 

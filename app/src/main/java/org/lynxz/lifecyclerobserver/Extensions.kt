@@ -1,50 +1,72 @@
 package org.lynxz.lifecyclerobserver
 
 import android.app.Activity
-import android.app.Application
+import android.content.Context
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
+import android.support.v4.content.PermissionChecker
 import android.text.TextUtils
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import java.text.DecimalFormat
 
 /**
  * Created by lynxz on 13/01/2017.
- * 常用扩展函数
+ * 扩展函数
  */
 fun CharSequence.isEmpty(): Boolean {
     return TextUtils.isEmpty(this)
 }
 
+fun Context.showToast(msg: String) {
+    if (msg.isNotBlank()) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+}
+
+fun Context.showToast(msgId: Int) {
+    Toast.makeText(this, msgId, Toast.LENGTH_SHORT).show()
+}
+
+fun Context.getStringRes(@StringRes strId: Int): String {
+    return resources.getString(strId)
+}
+
 fun Fragment.showToast(msg: String) {
-    activity.showToast(msg)
+    if (msg.isNotBlank()) {
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
+    }
 }
 
 fun Fragment.showToast(msgId: Int) {
-    activity.showToast(msgId)
+    Toast.makeText(activity, msgId, Toast.LENGTH_SHORT).show()
 }
 
-fun Activity.showToast(msgId: Int) {
-    application.showToast(msgId)
+fun Fragment.getStringRes(@StringRes strResId: Int): String? {
+    return activity?.resources?.getString(strResId)
 }
 
-fun Activity.showToast(msg: String) {
-    application.showToast(msg)
+fun Context.isPermissionGranted(permission: String): Boolean {
+    return PermissionChecker.checkSelfPermission(this, permission) == PermissionChecker.PERMISSION_GRANTED
 }
 
-fun Application?.showToast(msg: String) {
-    this?.let {
-        Toast.makeText(this.applicationContext, msg, Toast.LENGTH_SHORT).show()
+fun Activity.hideKeyboard() {
+    this.getSystemService(Context.INPUT_METHOD_SERVICE)?.let {
+        (it as InputMethodManager).hideSoftInputFromWindow(this.currentFocus.windowToken, 0)
     }
 }
 
-fun Application?.showToast(msgId: Int) {
-    this?.let {
-        Toast.makeText(this.applicationContext, msgId, Toast.LENGTH_SHORT).show()
-    }
-}
+/**
+ * 保留两位小数,并返回字符串
+ * */
+fun Double.yuan(): String = DecimalFormat("0.##").format(this)
 
-fun Fragment.getStringRes(@StringRes resId: Int): String {
-    return this.activity.resources.getString(resId)
+/**
+ * double类型向上保留转换为整数,如 2.1 -> 3  2.0->2
+ * */
+fun Double.toIntUp(): Int {
+    val remainder = if (this % 1 > 0) 1 else 0
+    return this.toInt() + remainder
 }
 
 inline fun debugConf(code: () -> Unit) {
@@ -52,3 +74,25 @@ inline fun debugConf(code: () -> Unit) {
         code()
     }
 }
+
+///**
+// * 类型转换
+// * */
+//inline fun <T, reified R> T.convertToObj(doOnError: (T) -> Unit): R? {
+//    val jsonStr = when (this) {
+//        is HttpException -> { // retrofit2.HttpException
+//            this.response().errorBody()?.string()
+//        }
+//        is String -> this
+//        is CharSequence -> this.toString()
+//        is R -> return this
+//        else -> null
+//    }
+//    return try {
+//        mGson.fromJson<R>(jsonStr, R::class.java)
+//    } catch (e: Exception) {
+//        e.printStackTrace()
+//        doOnError(this)
+//        null
+//    }
+//}

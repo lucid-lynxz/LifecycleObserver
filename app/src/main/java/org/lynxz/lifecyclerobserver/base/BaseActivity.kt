@@ -33,6 +33,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener {
      */
     protected abstract fun afterCreate()
 
+    @Suppress("UNCHECKED_CAST")
     fun <T : View> findView(id: Int): T {
         return findViewById<View>(id) as T
     }

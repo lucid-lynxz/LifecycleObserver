@@ -19,12 +19,12 @@ class RvTaskTreeAdapter(cxt: Context, var data: MutableList<ActivityInfo>) : Rec
 
     override fun getItemCount() = data.size
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int) =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             RvTTHolder(mLayoutInflater.inflate(R.layout.item_rv_task_tree, parent, false))
 
-    override fun onBindViewHolder(holder: RvTTHolder?, position: Int) {
+    override fun onBindViewHolder(holder: RvTTHolder, position: Int) {
         val activityInfo = data[position]
-        holder?.tvItem?.apply {
+        holder.tvItem?.apply {
             text = activityInfo.name
             setTextColor(activityInfo.state.color)
         }
